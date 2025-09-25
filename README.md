@@ -18,20 +18,33 @@ A Model Context Protocol (MCP) server that provides web search capabilities thro
 
 ## Installation
 
-### Installing via Smithery
+### Installing from GitHub
 
-To install DuckDuckGo Search Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@nickclyde/duckduckgo-mcp-server):
+To install the modified DuckDuckGo Search Server (with renamed tool for better compatibility) for Claude Desktop:
 
 ```bash
-npx -y @smithery/cli install @nickclyde/duckduckgo-mcp-server --client claude
+pip install git+https://github.com/lfgranja/duckduckgo-mcp-server.git
 ```
 
-### Installing via `uv`
-
-Install directly from PyPI using `uv`:
+Or using uv:
 
 ```bash
-uv pip install duckduckgo-mcp-server
+uv pip install git+https://github.com/lfgranja/duckduckgo-mcp-server.git
+```
+
+### Running with Claude Desktop
+
+After installation, add the following configuration to your Claude Desktop config:
+
+```json
+{
+    "mcpServers": {
+        "ddg-search": {
+            "command": "uvx",
+            "args": ["git+https://github.com/lfgranja/duckduckgo-mcp-server.git"]
+        }
+    }
+}
 ```
 
 ## Usage
@@ -71,10 +84,10 @@ mcp install server.py
 ```
 ## Available Tools
 
-### 1. Search Tool
+### 1. DuckDuckGo Search Tool
 
 ```python
-async def search(query: str, max_results: int = 10) -> str
+async def duckduckgo_search(query: str, max_results: int = 10) -> str
 ```
 
 Performs a web search on DuckDuckGo and returns formatted results.

@@ -212,7 +212,7 @@ fetcher = WebContentFetcher()
 
 
 @mcp.tool()
-async def search(query: str, ctx: Context, max_results: int = 10) -> str:
+async def duckduckgo_search(query: str, ctx: Context, max_results: int = 10) -> str:
     """
     Search DuckDuckGo and return formatted results.
 
